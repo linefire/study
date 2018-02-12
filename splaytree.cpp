@@ -1,4 +1,5 @@
-﻿#include<stdio.h>
+//Студент Групи К-29 Михед Олександр Михайлович
+#include<stdio.h>
 #include<stdlib.h>
 #include <time.h>
 
