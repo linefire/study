@@ -1,3 +1,4 @@
+//Студент Групи К-29 Михед Олександр Михайлович
 #include <iostream>
 #include <cstdio>
 #include <string>
