@@ -2,7 +2,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <time.h>
-
+#include <ctime>
+int count = 0;
 void sleep(int milliseconds) 
 {
 	clock_t time_end;
@@ -183,29 +184,47 @@ void preOrder(struct node *root)
 {
 	if (root != NULL)
 	{
-		printf("%d =(", root->key);
+		printf("%d =(", root->key); count++;
 		preOrder(root->left);
 		printf(";");
 		preOrder(root->right);
 		printf(")");
 	}
+
+}
+void pre(struct node *root)
+{
+	if (root != NULL)
+	{
+		count++;
+		pre(root->right);
+		pre(root->left);
+	}
+
 }
 
 
 int main()
 {
 	struct node *root = newNode(100);
-	root->left = newNode(50);
-	root->right = newNode(200);
-	root->left->left = newNode(40);
-	root->left->left->left = newNode(30);
-	root->left->left->left->left = newNode(20);
 
-	root = search(root, 20);
-	root = insert(root, 70);
-	root = delete_key(root, 40);
+	
+	//root = search(root, 20);
+	//root = insert(root, 70);
+	//root = delete_key(root, 40);
+	unsigned int start_time = clock();
+	for (int i = 1; i < 9999; ++i)
+	{
+		root = insert(root, rand()% 2000000);
+	}
+	unsigned int end_time = clock();
+
 	printf("Preorder traversal of the modified Splay tree is \n");
-	preOrder(root);
-	sleep(10000);
+	count = 0;
+	pre(root);
+	printf("\n");
+	printf("time: %i \n", end_time - start_time);
+	printf("element: %i \n", count);
+	count = getchar();
 	return 0;
 }
